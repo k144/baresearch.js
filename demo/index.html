@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="../baresearch.min.js"></script>
+	<link rel="stylesheet" href="https://k144.github.io/style.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+	<header>
+		<h1>baresearch.js</h1>
+		<p>a small &amp; fast public domain filtered search JavaScript library</p>
+	</header>
+
+	<nav>
+		<a href="https://github.com/k144/baresearch.js">github page</a>
+		<!-- <a href="refference.html">quick refference (TODO)</a> -->
+		<a href="#example-code">example code</a>
+		<a href="#demo">demo</a>
+		<!-- <a href="/comparison.html">comparison (TODO)</a> -->
+	</nav>
+
+	<main>
+		<center>currently 48 <abbr title="Source Lines Of Code">SLOC</abbr></center>
+		<h3>Download:</h3>
+		<ul>
+			<li><a href="../baresearch.js" download>baresearch.js</a> (4258 bytes)</li>
+			<li><a href="../baresearch.min.js" download>baresearch.min.js</a> (798 bytes)</li>
+		</ul>
+		<p>It essentialy works like <a href="https://www.man7.org/linux/man-pages/man1/grep.1.html">grep</a>, but for <a href="https://www.w3.org/TR/WD-DOM/introduction.html">HTML DOM</a>.</p>
+
+		<p>
+			The source code is written with an intention for you to modify it. It contains comments with suggestions for extending it's functionality.  
+		</p>
+			
+		<p> If you want something more elaborate built with the same principles, there will be an extended version of this with fuzzy search and some other features in the future.</p>
+		<p>Now straight to the point. This is how you use it:</p>
+		
+		<code class="multiline" id="example-code">
+<span class="comment">&lt;!-- Include the script anywhere. It'll wait for the page to load. --&gt;</span>
+&lt;script <span class="property">src<span class="content">=</span></span><span class="value">&quot;./path/to/baresearch.js&quot;</span>&gt;&lt;/script&gt;
+
+<span class="comment">&lt;!-- 
+	Below is the container of our filtered search.
+	It doesn't need any special classes.
+--&gt;</span>
+&lt;div&gt;
+
+	<span class="comment">&lt;!-- The search box must have <b>class=&quot;baresearch-search&quot;</b> --&gt;</span>
+	&lt;p&gt;<span class="content"></span>&lt;/p&gt;<span class="content"></span>
+	&lt;input <span class="property">type</span><span class="content">=</span><span class="value">&quot;text&quot;</span> <span class="property">class<span class="content">=</span></span><span class="value">&quot;baresearch-search&quot;</span>&gt;
+
+	&lt;p&gt;<span class="content">
+		In between the elements managed by the library
+		you may have as many elements of your own as you want.
+	</span>&lt;/p&gt;
+
+	<span class="comment">&lt;!--
+		Now, a wrapper with items. Items are all of it's
+		immediate children. In this case it's the divs.
+		The h3-s and p-s are part of them, but not items
+		of their own. A wrapper of items must have a
+		<b>class="baresearch-items"</b>.
+	--&gt;</span>
+	&lt;div <span class="property">class</span><span class="content">=</span><span class="value">&quot;baresearch-items&quot;</span>&gt;
+
+		<span class="comment">&lt;!-- 1st item --&gt;</span>
+		&lt;div&gt;
+			&lt;h3&gt;<span class="content">This header is inside an item,</span>&lt;/h3&gt;
+			&lt;p&gt;<span class="content">the form of which doesn't matter.</span>&lt;/p&gt;
+			&lt;p&gt;<span class="content">All the text will be searched.</span>&lt;/p&gt;
+		&lt;/div&gt;
+
+		<span class="comment">&lt;!-- 2nd item --&gt;</span>
+		&lt;div&gt;
+			&lt;p&gt;<span class="content">Another item</span>&lt;/p&gt;
+			&lt;p&gt;<span class="content">Note that items don't need</span>&lt;/p&gt;
+			&lt;p&gt;<span class="content">any special classes</span>&lt;/p&gt;
+		&lt;/div&gt;
+
+		<span class="comment">&lt;!-- have as many elements as you want --&gt;</span>
+
+	&lt;/div&gt;
+	
+	&lt;div <span class="property">class</span><span class="content">=</span><span class="value">&quot;baresearch-empty&quot;</span>&gt;
+		&lt;p&gt;<span class="content">
+			This is the message displayed when there
+			are no items matching the search.
+		</span>&lt;/p&gt;
+		&lt;p&gt;<span class="content">
+			The script hides it on load, so you don't
+			have to pre-hide it in your stylesheets.
+		</span>&lt;/p&gt;
+	&lt;/div&gt;
+
+&lt;/div&gt;
+		</code>
+
+		<p>That's it. You don't need to use any fancy JavaScript API &mdash; there is none.<br>All you have to do is include the script and put the classes in.</p>
+
+		<div class="search-container" id="demo">
+			<p>Here's a working example:</p>
+
+			<input type="text" class="baresearch-search" placeholder="try &quot;sum&quot;, &quot;and arose&quot;, &quot;2005&quot;, &quot;hamlet&quot;, &quot;license 3&quot;"">
+			<div class="baresearch-items">
+				<div>
+					<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h3>
+					<p>Nam, quisquam officiis! Veniam corrupti saepe, illo fugit quo reprehenderit deserunt atque numquam autem nesciunt quidem pariatur eius natus, exercitationem doloremque! Modi.</p>
+				</div>
+				<div>
+					<blockquote>
+						To be, or not to be: that is the question:<br>
+						Whether ’tis nobler in the mind to suffer<br>
+						The slings and arrows of outrageous fortune,<br>
+						Or to take arms against a sea of troubles,<br>
+						And by opposing end them. To die: to sleep...
+					</blockquote>
+					<cite>Hamlet, Act III, Scene I</cite>
+				</div>
+				<div>
+					<p>Might as well put it here.</p>
+					<h3>The project's license 1/5</h3>
+					<p>This is free and unencumbered software released into the public domain.</p>
+				</div>
+				<div>
+					<h3>License 2/5</h3>
+					<p>Anyone is free to copy, modify, publish, use, compile, sell, or distribute this software, either in source code form or as a compiled binary, for any purpose, commercial or non-commercial, and by any means.</p>
+				</div>
+				<div>
+					<h3>License 3/5</h3>
+					<p> In jurisdictions that recognize copyright laws, the author or authors of this software dedicate any and all copyright interest in the software to the public domain. We make this dedication for the benefit of the public at large and to the detriment of our heirs and successors. We intend this dedication to be an overt act of relinquishment in perpetuity of all present and future rights to this software under copyright law.</p>
+				</div>
+				<div>
+					<h3>License 4/5</h3>
+					<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+				</div>
+				<div>
+					<h3>License 5/5</h3>
+					<p>For more information, please refer to <a href="https://unlicense.org">https://unlicense.org</a></p>
+					<h3>The summary:</h3>
+					<p>You can do whatever you want with it.</p>
+					<p>You technically don't have to leave any atribution, but it would be nice ;)</p>
+				</div>
+				<div>
+					<h4>Full UTF-8 support</h4>
+					<h3>六四事件</h3>
+					<p>
+						六四事件是中华人民共和国历史上的一个转折点，它的爆发标志着邓小平、赵紫阳等人在中国大陆推动的后期政治体制改革失败，赵紫阳、鲍彤等中共改革派高层被撤职，1980年代不同程度放開的自由與言論從此轉向收緊。国际社会对此事件普遍表示了谴责和制裁，也有部分国家表示同情或者支持，而六四事件的經濟影響也直接导致了中華人民共和國改革开放的放缓甚至停滞，直至1992年邓小平南巡后才重新提速。不過，邓小平任内推行的废除干部领导职务终身制則一直延续下来，期間更完成了3任政權的和平更替，直至習近平2018年修宪后被废除。
+					</p>
+				</div>
+				<div>
+					<p>Zażółć gęślą jaźń</p>
+				</div>
+				<div>
+					<h3>Pictures work too.</h3>
+					<img src="./beksinski.jpg" alt="Y by Zdzisław Beksiński" width="50%" style="display:block;margin:24px auto;">
+					<cite>Y (2005) by Zdzisław Beksiński</cite>
+				</div>
+				<div>
+					<blockquote>
+						<p>Tis true without lying, certain and most true.</p>
+						<p>
+							That which is below is like that which is above
+							and that which is above is like that which is below
+							to do the miracle of one only thing
+						</p>
+						<p>
+							And as all things have been and arose from one by the mediation of one:
+							so all things have their birth from this one thing by adaptation.
+						</p>
+					</blockquote>
+					<cite>Tabula Smaragdina, translation by Isaac Newton</cite>
+				</div>
+			</div>
+			<div class="baresearch-empty">
+				<p>Sorry, there are no items matching your search phrase.</p>
+				<p>Try something different.</p>
+			</div>
+		</div>
+
+		<p>You can have multiple searches on the same page. The only thing you have to do is to keep them in seperate containers.</p>
+
+		<hr>
+
+
+		<p>
+			This website doesn't track you and doesn't have any ads.<br>
+			If you've got a spare buck, please consider <a href="https://www.paypal.com/paypalme/jakubnowak144" class="donate">supporting me on PayPal</a>.
+		</p>
+
+	</main>
+	<footer>
+		<p>made by <a href="https://k144.github.io/">Jakub Nowak</a></p>
+		<p><a href="https://github.com/k144/baresearch.js">source code</a></p>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,61 @@
+.baresearch-search {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.baresearch-items > div {
+    border: 1px solid #ffdcbc;
+    padding: 32px;
+    margin: 16px;
+}
+
+.baresearch-empty {
+    text-align: center;
+    margin: 64px;
+}
+
+.search-container {
+    min-height: 70vh;
+    margin: 24px 0 64px 0;
+}
+
+code.multiline {
+    display: block;
+    white-space: pre-wrap;
+    color: crimson;
+    tab-size: 4;
+    -moz-tab-size: 4;
+}
+
+code span.property {
+    color: darkorange;
+}
+
+code span.value {
+    color: darksalmon;
+}
+
+code span.content {
+    color: #ffdcbc;
+}
+
+code span.comment {
+    color: gray;
+}
+
+h1 {
+    margin-bottom: 24px;
+}
+
+cite {
+    text-align: right;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: 56px;
+    margin: 24px;
+}
+
+cite::before {
+    content: "-";
+}
